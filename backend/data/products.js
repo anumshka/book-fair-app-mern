@@ -1,6 +1,5 @@
 const products = [
   {
-    _id: '1',
     name: 'Ariel',
     image: '/images/ariel.png',
     description:
@@ -13,7 +12,6 @@ const products = [
     numReviews: 12,
   },
   {
-    _id: '2',
     name: 'The Bell Jar',
     image: '/images/bell-jar.png',
     description:
@@ -26,7 +24,6 @@ const products = [
     numReviews: 8,
   },
   {
-    _id: '3',
     name: 'Pride and Prejudice',
     image: '/images/pride-and-pred.png',
     description:
@@ -39,7 +36,6 @@ const products = [
     numReviews: 12,
   },
   {
-    _id: '4',
     name: 'Rebecca',
     image: '/images/rebecca.png',
     description:
