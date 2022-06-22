@@ -52,5 +52,5 @@ const products = [
     numReviews: 12,
   },
 ]
-
-module.exports = products
+//es modules
+export default products
