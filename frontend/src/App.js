@@ -4,6 +4,7 @@ import { Container } from 'react-bootstrap'
 import HomeScreen from './screens/HomeScreen'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import ProductScreen from './screens/ProductScreen'
+import CartScreen from './screens/CartScreen'
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Router>
             <Route path='/product/:id' component={ProductScreen} />
             <Route path='/' component={HomeScreen} exact />
+            <Route path='/cart/:id?' component={CartScreen} />
           </Router>
         </Container>
       </main>
