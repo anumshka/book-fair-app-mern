@@ -10,7 +10,7 @@ import Loader from '../components/Loader'
 import { listProductDetails } from '../actions/productActions'
 
 const ProductScreen = ({ match, history }) => {
-  const [qty, setQty] = useState(0)
+  const [qty, setQty] = useState(1)
   // to find the particular product with the id in the url
   const dispatch = useDispatch()
 
@@ -43,7 +43,7 @@ const ProductScreen = ({ match, history }) => {
             </Col>
 
             {/* second column */}
-            <Col md={3} className='m-5'>
+            <Col md={3} className='m-3'>
               <Card>
                 <ListGroup variant='flush'>
                   <ListGroup.Item>
