@@ -11,23 +11,23 @@ import ProfileScreen from './screens/ProfileScreen'
 import ShippingScreen from './screens/ShippingScreen'
 import PlaceOrderScreen from './screens/PlaceOrderScreen'
 import PaymentScreen from './screens/PaymentScreen'
+import OrderScreen from './screens/OrderScreen'
 function App() {
   return (
     <Router>
-      <Header />
+      <Header></Header>
       <main className='py-3'>
         <Container>
-          <Router>
-            <Route path='/login' component={LoginScreen} />
-            <Route path='/payment' component={PaymentScreen} />
-            <Route path='/shipping' component={ShippingScreen} />
-            <Route path='/placeorder' component={PlaceOrderScreen} />
-            <Route path='/register' component={RegisterScreen} />
-            <Route path='/product/:id' component={ProductScreen} />
-            <Route path='/' component={HomeScreen} exact />
-            <Route path='/profile' component={ProfileScreen} />
-            <Route path='/cart/:id?' component={CartScreen} />
-          </Router>
+          <Route path='/login' component={LoginScreen} />
+          <Route path='/payment' component={PaymentScreen} />
+          <Route path='/shipping' component={ShippingScreen} />
+          <Route path='/placeorder' component={PlaceOrderScreen} />
+          <Route path='/register' component={RegisterScreen} />
+          <Route path='/product/:id' component={ProductScreen} />
+          <Route path='/' component={HomeScreen} exact />
+          <Route path='/profile' component={ProfileScreen} />
+          <Route path='/cart/:id?' component={CartScreen} />
+          <Route path='/order/:id' component={OrderScreen} />
         </Container>
       </main>
       <Footer />

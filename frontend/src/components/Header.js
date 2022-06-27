@@ -1,8 +1,14 @@
 import React from 'react'
 import { LinkContainer } from 'react-router-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { Navbar, Nav, Container, NavDropdown, NavLink } from 'react-bootstrap'
+import {
+  Navbar,
+  Nav,
+  Container,
+  NavDropdown,
+  NavLink,
+  NavbarBrand,
+} from 'react-bootstrap'
 import { logout } from '../actions/userActions'
 const Header = () => {
   const dispatch = useDispatch()
@@ -14,18 +20,18 @@ const Header = () => {
     dispatch(logout())
   }
   return (
-    <Navbar bg='light' expand='lg'>
+    <Navbar bg='light' expand='lg' fluid>
       <Container>
-        <Nav.Link as={Link} to='/'>
-          home
-        </Nav.Link>
+        <LinkContainer to='/'>
+          <NavbarBrand>Book-Fair</NavbarBrand>
+        </LinkContainer>
 
         <Navbar.Toggle aria-controls='basic-navbar-nav' />
         <Navbar.Collapse id='basic-navbar-nav'>
           <Nav className='me-auto'>
             <LinkContainer to='/cart' style={{ color: 'black' }}>
               <Nav.Link>
-                <i className='fas fa-shopping-cart'></i>Cart
+                <i className='fa fa-shopping-cart'></i>Cart
               </Nav.Link>
             </LinkContainer>
 

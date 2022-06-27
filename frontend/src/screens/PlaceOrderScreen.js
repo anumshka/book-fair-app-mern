@@ -32,7 +32,6 @@ const PlaceOrderScreen = ({ history }) => {
     if (success) {
       history.push(`/order/${order._id}`)
     }
-    // eslint-disable-next-line
   }, [history, success])
 
   const placeOrderHandler = () => {
@@ -43,7 +42,6 @@ const PlaceOrderScreen = ({ history }) => {
         paymentMethod: cart.paymentMethod,
         itemsPrice: cart.itemsPrice,
         shippingPrice: cart.shippingPrice,
-        taxPrice: cart.taxPrice,
         totalPrice: cart.totalPrice,
       })
     )
@@ -127,9 +125,7 @@ const PlaceOrderScreen = ({ history }) => {
                   <Col>Rs{cart.totalPrice}</Col>
                 </Row>
               </ListGroup.Item>
-              <ListGroup.Item>
-                {error && <Message variant='danger'>{error}</Message>}
-              </ListGroup.Item>
+
               <ListGroup.Item>
                 <Button
                   type='button'
@@ -139,6 +135,9 @@ const PlaceOrderScreen = ({ history }) => {
                 >
                   Make Payment
                 </Button>
+                <ListGroup.Item>
+                  {error && <Message variant='danger'>{error}</Message>}
+                </ListGroup.Item>
               </ListGroup.Item>
             </ListGroup>
           </Card>
