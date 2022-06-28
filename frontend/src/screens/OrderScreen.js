@@ -4,12 +4,20 @@ import { Button, Row, Col, ListGroup, Image, Card } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
-import { getOrderDetails, payOrder } from '../actions/orderActions'
-import { ORDER_PAY_RESET } from '../constants/orderConstants'
+
 import { Elements } from '@stripe/react-stripe-js'
 import { loadStripe } from '@stripe/stripe-js'
 import getDateString from '../utils/getDateString'
 import CheckoutForm from '../components/CheckoutForm'
+import {
+  getOrderDetails,
+  payOrder,
+  deliverOrder,
+} from '../actions/orderActions'
+import {
+  ORDER_PAY_RESET,
+  ORDER_DELIVER_RESET,
+} from '../constants/orderConstants'
 
 const OrderScreen = ({ match }) => {
   console.log(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY)
@@ -23,6 +31,11 @@ const OrderScreen = ({ match }) => {
 
   const orderPay = useSelector((state) => state.orderPay)
   const { loading: loadingPay, success: successPay } = orderPay
+  const orderDeliver = useSelector((state) => state.orderDeliver)
+  const { loading: loadingDeliver, success: successDeliver } = orderDeliver
+
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
 
   if (!loading) {
     //   Calculate prices
@@ -40,13 +53,16 @@ const OrderScreen = ({ match }) => {
 
   // set order to paid or delivered, and fetch updated orders
   useEffect(() => {
-    if (!order || order._id !== orderId || successPay) {
+    if (!order || order._id !== orderId || successPay || successDeliver) {
       if (successPay) dispatch({ type: ORDER_PAY_RESET })
-
+      if (successDeliver) dispatch({ type: ORDER_DELIVER_RESET })
       dispatch(getOrderDetails(orderId))
     }
-  }, [order, orderId, dispatch, successPay])
+  }, [order, orderId, dispatch, successPay, successDeliver])
 
+  const deliverHandler = () => {
+    dispatch(deliverOrder(order))
+  }
   return loading ? (
     <Loader />
   ) : error ? (
@@ -190,14 +206,28 @@ const OrderScreen = ({ match }) => {
               </ListGroup.Item>
               <ListGroup.Item>
                 {loadingPay && <Loader />}
-                <Elements stripe={stripePromise}>
-                  {/* price in paisa */}
-                  <CheckoutForm
-                    price={order.totalPrice * 100}
-                    orderId={order._id}
-                  />
-                </Elements>
+                {!order.isPaid && (
+                  <Elements stripe={stripePromise}>
+                    {/* price in paisa */}
+                    <CheckoutForm
+                      price={order.totalPrice * 100}
+                      orderId={order._id}
+                    />
+                  </Elements>
+                )}
               </ListGroup.Item>
+              {loadingDeliver && <Loader />}
+              {userInfo.isAdmin && order.isPaid && !order.isDelivered && (
+                <ListGroup.Item>
+                  <Button
+                    type='button'
+                    className='btn btn-block'
+                    onClick={deliverHandler}
+                  >
+                    Mark As Delivered
+                  </Button>
+                </ListGroup.Item>
+              )}
             </ListGroup>
           </Card>
         </Col>
