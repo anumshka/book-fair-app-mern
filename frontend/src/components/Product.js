@@ -23,7 +23,14 @@ const Product = ({ product }) => {
           ></Rating>
         </Card.Text>
 
-        <Card.Text as='h4'>Rs.{product.price}</Card.Text>
+        <Card.Text as='h4'>
+          {product.price &&
+            product.price.toLocaleString('en-IN', {
+              maximumFractionDigits: 2,
+              style: 'currency',
+              currency: 'INR',
+            })}
+        </Card.Text>
       </Card.Body>
     </Card>
   )

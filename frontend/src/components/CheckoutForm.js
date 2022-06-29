@@ -40,6 +40,7 @@ const CheckoutForm = ({ price, orderId }) => {
   // STEP 2: make the payment after filling the form properly
   const makePayment = async (e) => {
     e.preventDefault()
+    dispatch(savePaymentMethod('Stripe'))
     if (!stripe || !elements) {
       // Stripe.js has not yet loaded.
       // Make  sure to disable form submission until Stripe.js has loaded.
@@ -55,7 +56,7 @@ const CheckoutForm = ({ price, orderId }) => {
           },
         },
       })
-      console.log(orderId)
+
       if (!payload.error) {
         dispatch(savePaymentMethod('Stripe'))
         dispatch(
