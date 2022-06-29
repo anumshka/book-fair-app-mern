@@ -171,9 +171,6 @@ const ProductScreen = ({ match, history }) => {
 
               <ListGroup.Item>
                 <h2>Write a Customer Review</h2>{' '}
-                {errorProductReview && (
-                  <Message variant='danger'>{errorProductReview}</Message>
-                )}
               </ListGroup.Item>
 
               <ListGroup.Item>
@@ -211,7 +208,11 @@ const ProductScreen = ({ match, history }) => {
                     </Form>
                   </Row>
                 ) : (
-                  <ListGroup.Item></ListGroup.Item>
+                  <ListGroup.Item>
+                    {errorProductReview && (
+                      <Message variant='danger'>{errorProductReview}</Message>
+                    )}
+                  </ListGroup.Item>
                 )}
               </ListGroup.Item>
             </ListGroup>
