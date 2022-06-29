@@ -2,11 +2,9 @@ import asyncHandler from 'express-async-handler'
 import Order from '../models/orderModel.js'
 import Stripe from 'stripe'
 import dotenv from 'dotenv'
-dotenv.config({ path: '../../.env' })
+dotenv.config()
 
-const stripe = new Stripe(
-  'sk_test_51LEItmSIYhPb3Chalu3t8InzpVfUxUIb0qoajh8HQSI00TfC3fNTOyMW5nkPAaz4HamlAxW9YbtyhwZAOicfMNzI00rg6sf7Ad'
-)
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 
 // @desc    Create new order
 // @route   POST /api/orders

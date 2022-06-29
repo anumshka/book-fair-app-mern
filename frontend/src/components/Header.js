@@ -25,14 +25,16 @@ const Header = () => {
     <Navbar bg='light' expand='lg' fluid>
       <Container>
         <LinkContainer to='/'>
-          <NavbarBrand>Book-Fair</NavbarBrand>
+          <NavbarBrand>
+            <h2>Book-Fair</h2>
+          </NavbarBrand>
         </LinkContainer>
 
         <Navbar.Toggle aria-controls='basic-navbar-nav' />
         <Navbar.Collapse id='basic-navbar-nav'>
           <Route render={({ history }) => <SearchBox history={history} />} />
           <Nav className='me-auto'>
-            <LinkContainer to='/cart' style={{ color: 'black' }}>
+            <LinkContainer to='/cart'>
               <Nav.Link>
                 <i className='fa fa-shopping-cart'></i>Cart
               </Nav.Link>
@@ -48,7 +50,7 @@ const Header = () => {
                 </NavDropdown.Item>
               </NavDropdown>
             ) : (
-              <LinkContainer to='/login' style={{ color: 'black' }}>
+              <LinkContainer to='/login'>
                 <Nav.Link>
                   <i className='fas fa-user'></i> Sign In
                 </Nav.Link>

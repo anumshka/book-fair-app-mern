@@ -154,14 +154,15 @@ const PlaceOrderScreen = ({ history }) => {
           </ListGroup.Item>
 
           <ListGroup.Item>
-            <Button
-              type='button'
+            <button
+              class='btn btn-primary'
+              type='submit'
               disabled={cart.cartItems === 0}
               onClick={placeOrderHandler}
               variant='Primary'
             >
-              Make Payment
-            </Button>
+              Continue
+            </button>
           </ListGroup.Item>
           <ListGroup.Item>
             {error && <Message variant='danger'>{error}</Message>}

@@ -7,7 +7,7 @@ import { savePaymentMethod } from '../actions/cartActions'
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js' // for stripe CC component
 import Message from '../components/Message'
 import dotenv from 'dotenv'
-dotenv.config({ path: '../../.env' })
+dotenv.config()
 const CheckoutForm = ({ price, orderId }) => {
   const [error, setError] = useState('') // from the stripe component itself
   const dispatch = useDispatch()

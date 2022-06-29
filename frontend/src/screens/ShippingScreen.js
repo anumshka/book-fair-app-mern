@@ -45,9 +45,8 @@ const ShippingScreen = ({ history }) => {
             onChange={(e) => setCity(e.target.value)}
           ></Form.Control>
         </Form.Group>
-
-        <Button type='submit' variant='Primary'>
-          NEXT
+        <Button type='submit' variant='primary'>
+          Continue
         </Button>
       </Form>
     </FormContainer>
