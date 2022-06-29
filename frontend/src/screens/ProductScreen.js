@@ -171,10 +171,9 @@ const ProductScreen = ({ match, history }) => {
 
               <ListGroup.Item>
                 <h2>Write a Customer Review</h2>{' '}
-              </ListGroup.Item>
-
-              <ListGroup.Item>
-                {' '}
+                {errorProductReview && (
+                  <Message variant='danger'>{errorProductReview}</Message>
+                )}
                 {userInfo ? (
                   <Row className='mx-5'>
                     <Form onSubmit={submitHandler}>
@@ -208,11 +207,9 @@ const ProductScreen = ({ match, history }) => {
                     </Form>
                   </Row>
                 ) : (
-                  <ListGroup.Item>
-                    {errorProductReview && (
-                      <Message variant='danger'>{errorProductReview}</Message>
-                    )}
-                  </ListGroup.Item>
+                  <Message>
+                    Please <Link to='/login'>sign in</Link> to write a review{' '}
+                  </Message>
                 )}
               </ListGroup.Item>
             </ListGroup>
