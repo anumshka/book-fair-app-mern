@@ -20,7 +20,6 @@ import {
 } from '../constants/orderConstants'
 
 const OrderScreen = ({ match }) => {
-  console.log(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY)
   const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY)
 
   const orderId = match.params.id
